@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOVAGRID — Dashboard</title><link rel="stylesheet" href="assets/style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body>
+<header><div class="container header-inner"><a class="logo" href="index.html">NOVA<span>GRID</span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteMenu"><span></span><span></span><span></span></button>
+<div class="nav-menu" id="siteMenu"><nav><a href="index.html">Home</a><a href="plans.html">Hosting Plans</a><a href="status.html">Status</a><a href="support.html">Support</a><a href="feedback.html">Feedback</a><a href="faq.html">FAQ</a></nav>
+<div class="actions"><button class="btn ghost" id="logout">Logout</button></div></div></div></header>
+<main class="page"><div class="container"><div class="section-title"><h2>Client Dashboard</h2><p id="welcome">Loading account...</p></div>
+<div class="grid grid-3"><div class="card"><h3>🖥️ Hosting</h3><p>Your hosting services will appear here after ordering.</p></div><div class="card"><h3>🎫 Support</h3><p><a href="support.html" style="color:#8fb7ff">Open a support ticket →</a></p></div><div class="card"><h3>💳 Billing</h3><p>Billing and payment history can be connected next.</p></div></div></div></main>
+<footer><div class="container footer-inner"><span>© 2026 NOVAGRID</span><span>Customer Dashboard</span></div></footer>
+<script>
+const client=supabase.createClient('https://xwmdwbusbapbdgectaqe.supabase.co','sb_publishable_1dtIj5GZJYee4SXaHTRPNg_HaOyCM_G');
+(async()=>{
+ const {data:{user}}=await client.auth.getUser();
+ if(!user){window.location.href='login.html';return;}
+ const username=user.user_metadata?.username || user.email;
+ document.getElementById('welcome').textContent='Signed in as '+username;
+})();
+document.getElementById('logout').onclick=async()=>{await client.auth.signOut();window.location.href='login.html'};
+</script></body></html>
