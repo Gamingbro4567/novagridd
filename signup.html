@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOVAGRID — Sign Up</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head><body>
+<header><div class="container header-inner">
+<a class="logo" href="index.html">NOVA<span>GRID</span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteMenu"><span></span><span></span><span></span></button>
+<div class="nav-menu" id="siteMenu"><nav>
+<a href="index.html">Home</a><a href="plans.html">Hosting Plans</a><a href="status.html">Status</a><a href="support.html">Support</a><a href="feedback.html">Feedback</a><a href="faq.html">FAQ</a>
+</nav><div class="actions"><a class="btn ghost" href="login.html">Login</a><a class="btn primary" href="signup.html">Sign Up</a></div></div>
+</div></header>
+<main class="page"><div class="container"><div class="form-wrap card">
+<div class="section-title"><h2>Create your account</h2><p>Register securely with NOVAGRID.</p></div>
+<form id="signupForm">
+<label>Username</label><input id="username" required autocomplete="username" placeholder="Your username">
+<label>Email</label><input id="email" type="email" required autocomplete="email" placeholder="you@example.com">
+<label>Password</label><input id="password" type="password" minlength="6" required autocomplete="new-password" placeholder="Create a password">
+<button class="btn primary full" type="submit">Create Account</button>
+</form>
+<div id="message" class="notice" style="display:none"></div>
+<p class="center" style="margin-top:16px;color:#9aa9bf">Already registered? <a href="login.html" style="color:#8fb7ff">Login</a></p>
+</div></div></main>
+<footer><div class="container footer-inner"><span>© 2026 NOVAGRID</span><span>Hosting • Support • Status</span></div></footer>
+<script>
+const SUPABASE_URL = 'https://xwmdwbusbapbdgectaqe.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_1dtIj5GZJYee4SXaHTRPNg_HaOyCM_G';
+const { createClient } = supabase;
+const client = createClient(SUPABASE_URL, SUPABASE_KEY);
+const form=document.getElementById('signupForm'), msg=document.getElementById('message');
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault(); msg.style.display='block'; msg.textContent='Creating account...';
+  const email=document.getElementById('email').value.trim(), password=document.getElementById('password').value;
+  const username=document.getElementById('username').value.trim();
+  const { data, error } = await client.auth.signUp({
+    email, password, options: { data: { username } }
+  });
+  if(error){ msg.textContent=error.message; return; }
+  if(data.session){ window.location.href='dashboard.html'; return; }
+  msg.textContent='Account created. Check your email to confirm your account, then login.';
+});
+const toggle=document.getElementById('menuToggle'),menu=document.getElementById('siteMenu');
+toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',open);});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));
+</script></body></html>
