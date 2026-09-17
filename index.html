@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOVAGRID — Home</title><meta name="description" content="NOVAGRID hosting platform">
+<link rel="stylesheet" href="assets/style.css"></head><body>
+<header><div class="container header-inner">
+<a class="logo" href="index.html">NOVA<span>GRID</span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteMenu"><span></span><span></span><span></span></button>
+<div class="nav-menu" id="siteMenu"><nav><a href="index.html">Home</a><a href="plans.html">Hosting Plans</a><a href="status.html">Status</a><a href="support.html">Support</a><a href="feedback.html">Feedback</a><a href="faq.html">FAQ</a></nav><div class="actions"><a class="btn ghost" href="login.html">Login</a><a class="btn primary" href="signup.html">Sign Up</a></div></div>
+</div></header>
+<main>
+<section class="hero"><div class="container">
+<span class="badge">NEXT-GEN GAME & CLOUD HOSTING</span>
+<h1>Power your projects with <span class="gradient">NOVAGRID</span></h1>
+<p class="lead">Fast, reliable hosting with simple plans, live service status, customer support and a clean client experience.</p>
+<div class="hero-actions"><a class="btn primary" href="plans.html">View Hosting Plans</a><a class="btn ghost" href="signup.html">Create Account</a></div>
+</div></section>
+<section><div class="container"><div class="section-title"><h2>Everything in one place</h2><p>Built for a simple hosting workflow on desktop and mobile.</p></div>
+<div class="grid grid-3"><div class="card"><h3>⚡ Fast Hosting</h3><p>Modern infrastructure designed for responsive services and game servers.</p></div><div class="card"><h3>🛡️ Reliable</h3><p>Monitor service health and keep customers informed with the status page.</p></div><div class="card"><h3>🎫 Support</h3><p>Give customers a dedicated place to send support requests and feedback.</p></div></div></div></section>
+</main>
+<footer><div class="container footer-inner"><span>© 2026 NOVAGRID</span><span>Hosting • Support • Status</span></div></footer>
+<script>
+const toggle=document.getElementById('menuToggle'),menu=document.getElementById('siteMenu');
+toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',open);toggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation menu')}));
+window.addEventListener('resize',()=>{if(window.innerWidth>900){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false')}});
+function demo(e,msg){e.preventDefault();alert(msg)}
+</script></body></html>
